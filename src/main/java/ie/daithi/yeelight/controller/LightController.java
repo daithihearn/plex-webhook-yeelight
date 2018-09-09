@@ -27,7 +27,7 @@ public class LightController {
 
         if (event == null) {
         	LOGGER.info("Event type {} not supported.", payload.getEvent());
-		} else if (Event.PLAY.equals(event)) {
+		} else if (Event.PLAY.equals(event) ||Event.RESUME.equals(event)) {
 			yeelightService.turnOff();
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
 			yeelightService.turnOn();

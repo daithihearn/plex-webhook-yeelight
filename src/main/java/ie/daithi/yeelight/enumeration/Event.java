@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public enum Event {
 
-    PLAY("media.play"), STOP("media.stop"), PAUSE("media.pause");
+    PLAY("media.play"), RESUME("media.resume"), STOP("media.stop"), PAUSE("media.pause");
 
     @Getter
     private String value;
