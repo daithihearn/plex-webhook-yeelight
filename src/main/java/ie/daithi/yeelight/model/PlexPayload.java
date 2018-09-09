@@ -1,7 +1,6 @@
 package ie.daithi.yeelight.model;
 
-import ie.daithi.yeelight.enumeration.Event;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -59,8 +58,12 @@ public class PlexPayload {
 	private String event;
 	private Boolean user;
 	private Boolean owner;
+	@JsonProperty("Account")
 	private Account account;
+	@JsonProperty("Server")
 	private Server server;
+	@JsonProperty("Player")
 	private Player player;
+	@JsonProperty("Metadata")
 	private Metadata metadata;
 }

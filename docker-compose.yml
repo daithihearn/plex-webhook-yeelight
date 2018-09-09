@@ -9,6 +9,7 @@ services:
     restart: always
     ports:
       - "3000:8080"
+      - "5005:5005"
     volumes:
       - ./:/opt/app
       - ~/.m2/repository/com/mollin/yapi:/root/.m2/repository/com/mollin/yapi
