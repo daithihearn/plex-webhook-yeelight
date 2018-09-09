@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+
+  yeelight:
+    build:
+      context: ./
+    command: -Dorg.gradle.jvmargs="-Xmx2g" bootRun
+    restart: always
+    ports:
+      - "3000:8080"
+    volumes:
+      - ./:/opt/app
+      - ~/.m2/repository/com/mollin/yapi:/root/.m2/repository/com/mollin/yapi

@@ -1,0 +1,62 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
+
+defaultTasks "build"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+allprojects {	
+	task wrapper(type: Wrapper) {
+		gradleVersion = '4.6'
+	}
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+group = 'ie.daithi'
+version = '0.0.1-SNAPSHOT'
+
+buildscript {
+	ext {
+		springBootVersion = '2.0.4.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+	}
+}
+
+configurations {
+	providedRuntime
+}
+
+
+ext {
+	springCoreVersion = '4.3.18.RELEASE'
+}
+
+dependencies {
+
+	// External Ependencies
+	compile("org.springframework:spring-core:$springCoreVersion")
+	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+
+	compile("com.mollin.yapi:yapi:1.0")
+
+
+	compileOnly group: 'org.projectlombok', name: 'lombok', version:'1.18.2'
+
+	providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"	
+
+}

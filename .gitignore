@@ -21,3 +21,25 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+.gradle/
+.idea/
+gradle/
+gradlew
+gradlew.bat
+id-core.iml
+**/*.iml
+build/
+.settings/
+.classpath
+.DS_Store
+.project
+classes/
+frontend
+/output/
+dump.rdb
+/libs
+/root
+velocity.log*
+bin/
+.vscode/
