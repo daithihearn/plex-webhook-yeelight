@@ -23,7 +23,7 @@
 hs_err_pid*
 
 .gradle/
-.idea/s
+.idea/
 id-core.iml
 **/*.iml
 build/

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e6cb64a-8036-4383-9277-dbef5c57a499" name="Default Changelist" comment="" />
+    <list default="true" id="3e6cb64a-8036-4383-9277-dbef5c57a499" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -84,7 +87,8 @@
           <entry key="LICENSE" value="1" />
           <entry key="class" value="2" />
           <entry key="classpath" value="1" />
-          <entry key="dockerignore" value="1" />
+          <entry key="dockerignore" value="2" />
+          <entry key="gitignore" value="1" />
           <entry key="gradle" value="1" />
           <entry key="gradlew" value="1" />
           <entry key="java" value="8" />
@@ -101,13 +105,14 @@
           <entry key="Groovy" value="1" />
           <entry key="JAVA" value="8" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="PLAIN_TEXT" value="8" />
           <entry key="Properties" value="1" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="gitignore" value="10" />
           <entry key="java" value="444" />
           <entry key="md" value="762" />
           <entry key="properties" value="198" />
@@ -119,7 +124,7 @@
         <counts>
           <entry key="JAVA" value="444" />
           <entry key="Markdown" value="762" />
-          <entry key="PLAIN_TEXT" value="16" />
+          <entry key="PLAIN_TEXT" value="26" />
           <entry key="Properties" value="198" />
           <entry key="YAML" value="1" />
         </counts>
@@ -128,7 +133,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ie/daithi/yeelight/model/PlexPayload.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
@@ -137,6 +142,24 @@
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#PlexPayload#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.dockerignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -637,6 +660,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/test-data.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ie/daithi/yeelight/service/YeelightService.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -784,6 +808,17 @@
               <item name="plex-webhook-yeelight" type="b2602c69:ProjectViewProjectNode" />
               <item name="plex-webhook-yeelight" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="plex-webhook-yeelight" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plex-webhook-yeelight" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plex-webhook-yeelight" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plex-webhook-yeelight" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+              <item name="wrapper" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -862,15 +897,16 @@
       <workItem from="1536595914037" duration="1987000" />
       <workItem from="1536676446625" duration="76000" />
       <workItem from="1536676576685" duration="19000" />
-      <workItem from="1536849820925" duration="890000" />
+      <workItem from="1536849820925" duration="1105000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19093000" />
+    <option name="totallyTimeSpent" value="19308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Web" order="1" side_tool="true" />
@@ -1018,9 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.dockerignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/test-data.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1074,6 +1107,20 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#PlexPayload#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.dockerignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
         </state>
       </provider>
     </entry>
