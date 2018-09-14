@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/")
@@ -30,11 +35,11 @@ public class LightController {
 	@Value("#{'${plex.supported.media}'.split(',')}")
 	private List<String> supportedMedia;
 
-	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST, consumes = {"multipart/form-data"})
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(@RequestBody PlexPayload payload ) throws Exception {
-        LOGGER.info("Plex posted an event {}", payload.getEvent());
-
+    public String plexPostEndpoint(@RequestPart("file") @Valid @NotNull @NotBlank MultipartFile file) throws Exception {
+        LOGGER.info("Plex posted an event {}", file);
+/*
         Event event = Event.fromValue(payload.getEvent());
 
         if (event == null) {
@@ -50,7 +55,7 @@ public class LightController {
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
 			yeelightService.turnOn();
 		}
-
+*/
         return "Success!";
     }
 }
