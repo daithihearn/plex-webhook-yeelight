@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
@@ -33,9 +34,10 @@ public class LightController {
 
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(@RequestParam("files") MultipartFile[] files, @RequestBody PlexPayload payload  ) throws Exception {
-        LOGGER.info("Plex posted an event {}", files.length);
-        LOGGER.info("payload", payload);
+    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("file") MultipartFile[] files  ) throws Exception {
+		LOGGER.info("Plex posted an event {}", files.length);
+		LOGGER.info("request", request);
+		
 
   /*      Event event = Event.fromValue(payload.getEvent());
 
