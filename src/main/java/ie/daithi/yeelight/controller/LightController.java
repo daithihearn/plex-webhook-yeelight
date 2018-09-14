@@ -38,6 +38,9 @@ public class LightController {
     public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("json") MultipartFile[] files  ) throws Exception {
 		LOGGER.info("Plex posted an event {}", files.length);
 
+		while(request.getParameterNames().hasMoreElements()) {
+			LOGGER.info("Param Names: {}", request.getParameterNames().nextElement());
+		}
 		Iterator<String> iterator = request.getFileNames();
 		while(iterator.hasNext()) {
 			LOGGER.info("File name: {}", iterator.next());;
