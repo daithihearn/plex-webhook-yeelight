@@ -43,7 +43,7 @@ private ObjectMapper jacksonObjectMapper;
     public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("files") MultipartFile[] files  ) throws Exception {
 
 		String payloadString = request.getParameter("payload");
-		PlexPayload payload = jacksonObjectMapper.convertValue(payloadString, PlexPayload.class);
+		PlexPayload payload = jacksonObjectMapper.readValue(payloadString, PlexPayload.class);
 
         Event event = Event.fromValue(payload.getEvent());
 
