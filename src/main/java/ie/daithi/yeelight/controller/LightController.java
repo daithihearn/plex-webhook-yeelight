@@ -13,10 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 @RestController
 @RequestMapping("/")
 public class LightController {
@@ -35,12 +31,12 @@ public class LightController {
 	@Value("#{'${plex.supported.media}'.split(',')}")
 	private List<String> supportedMedia;
 
-	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST, consumes = {"multipart/form-data"})
+	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(@RequestPart("file") @Valid @NotNull @NotBlank MultipartFile file) throws Exception {
-        LOGGER.info("Plex posted an event {}", file);
-/*
-        Event event = Event.fromValue(payload.getEvent());
+    public String plexPostEndpoint(@RequestParam("files") MultipartFile[] files ) throws Exception {
+        LOGGER.info("Plex posted an event {}", files[0]);
+
+  /*      Event event = Event.fromValue(payload.getEvent());
 
         if (event == null) {
         	LOGGER.info("Event type '{}' not supported.", payload.getEvent());
