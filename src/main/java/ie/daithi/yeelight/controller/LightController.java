@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.util.Iterator;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/")
@@ -30,10 +35,15 @@ public class LightController {
 	@Value("#{'${plex.supported.media}'.split(',')}")
 	private List<String> supportedMedia;
 
-	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST, headers = "Accept=application/json")
+	@Autowired
+private ObjectMapper jacksonObjectMapper;
+
+	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(@RequestBody PlexPayload payload ) throws Exception {
-        LOGGER.info("Plex posted an event {}", payload.getEvent());
+    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("files") MultipartFile[] files  ) throws Exception {
+
+		String payloadString = request.getParameter("payload");
+		PlexPayload payload = jacksonObjectMapper.readValue(payloadString, PlexPayload.class);
 
         Event event = Event.fromValue(payload.getEvent());
 
