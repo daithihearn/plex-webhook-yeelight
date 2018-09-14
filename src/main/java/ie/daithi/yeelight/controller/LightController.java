@@ -33,8 +33,9 @@ public class LightController {
 
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(@RequestParam("files") MultipartFile[] files ) throws Exception {
-        LOGGER.info("Plex posted an event {}", files[0]);
+    public String plexPostEndpoint(@RequestParam("files") MultipartFile[] files, @RequestBody PlexPayload payload  ) throws Exception {
+        LOGGER.info("Plex posted an event {}", files.length);
+        LOGGER.info("payload", payload);
 
   /*      Event event = Event.fromValue(payload.getEvent());
 
