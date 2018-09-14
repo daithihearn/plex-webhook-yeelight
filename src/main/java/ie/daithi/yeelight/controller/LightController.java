@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.util.Iterator;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @RestController
 @RequestMapping("/")
 public class LightController {
@@ -33,21 +35,17 @@ public class LightController {
 	@Value("#{'${plex.supported.media}'.split(',')}")
 	private List<String> supportedMedia;
 
+	@Autowired
+private ObjectMapper jacksonObjectMapper;
+
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("json") MultipartFile[] files  ) throws Exception {
-		LOGGER.info("Plex posted an event {}", files.length);
+    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("files") MultipartFile[] files  ) throws Exception {
 
-		while(request.getParameterNames().hasMoreElements()) {
-			LOGGER.info("Param Names: {}", request.getParameterNames().nextElement());
-		}
-		Iterator<String> iterator = request.getFileNames();
-		while(iterator.hasNext()) {
-			LOGGER.info("File name: {}", iterator.next());;
-		}
-		
+		String payloadString = request.getParameter("payload");
+		PlexPayload payload = jacksonObjectMapper.convertValue(payloadString, PlexPayload.class);
 
-  /*      Event event = Event.fromValue(payload.getEvent());
+        Event event = Event.fromValue(payload.getEvent());
 
         if (event == null) {
         	LOGGER.info("Event type '{}' not supported.", payload.getEvent());
@@ -62,7 +60,7 @@ public class LightController {
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
 			yeelightService.turnOn();
 		}
-*/
+
         return "Success!";
     }
 }
