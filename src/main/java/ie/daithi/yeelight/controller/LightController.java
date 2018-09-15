@@ -40,7 +40,9 @@ private ObjectMapper jacksonObjectMapper;
 
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("files") MultipartFile[] files  ) throws Exception {
+    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("payload") MultipartFile[] files  ) throws Exception {
+
+		LOGGER.info("Files: {}", files.length);
 
 		String payloadString = request.getParameter("payload");
 		PlexPayload payload = jacksonObjectMapper.readValue(payloadString, PlexPayload.class);
