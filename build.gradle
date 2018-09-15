@@ -42,6 +42,10 @@ configurations {
 }
 
 
+bootJar {
+	launchScript()
+}
+
 ext {
 	springCoreVersion = '4.3.18.RELEASE'
 }
