@@ -47,6 +47,8 @@ public class LightController {
 		String payloadString = request.getParameter("payload");
 		PlexPayload payload = jacksonObjectMapper.readValue(payloadString, PlexPayload.class);
 
+		LOGGER.info("Payload: {}", payload);
+
         Event event = Event.fromValue(payload.getEvent());
 
         if (event == null) {
@@ -58,9 +60,13 @@ public class LightController {
 		} else if (payload.getMetadata() != null && !supportedMedia.contains(payload.getMetadata().getType())) {
 			LOGGER.info("Media type '{}' is not supported.", payload.getMetadata().getType());
 		} else if (Event.PLAY.equals(event) ||Event.RESUME.equals(event)) {
+        	LOGGER.info("Turning light off.");
 			yeelightService.turnOff();
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
+			LOGGER.info("Turning light on.");
 			yeelightService.turnOn();
+		} else {
+			LOGGER.info("None of the above.");
 		}
 
         return "Success!";
