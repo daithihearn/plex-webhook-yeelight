@@ -36,6 +36,7 @@ frontend
 dump.rdb
 /libs
 /root
+/out
 velocity.log*
 bin/
 .vscode/
