@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("/")
 public class LightController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LightController.class);
+	private Logger LOGGER = LoggerFactory.getLogger(LightController.class);
 
     @Autowired
     private LightService yeelightService;
@@ -52,7 +51,7 @@ public class LightController {
         Event event = Event.fromValue(payload.getEvent());
 
         if (event == null) {
-        	LOGGER.info("Event type '{}' not supported.", payload.getEvent());
+			LOGGER.info("Event type '{}' not supported.", payload.getEvent());
 		} else if (payload.getAccount() != null && !supportedUsers.contains(payload.getAccount().getId())) {
 			LOGGER.info("User '{}' is not supported.", payload.getAccount().getId());
 		} else if (payload.getPlayer() != null && !supportedPlayers.contains(payload.getPlayer().getUuid())) {
@@ -60,7 +59,7 @@ public class LightController {
 		} else if (payload.getMetadata() != null && !supportedMedia.contains(payload.getMetadata().getType())) {
 			LOGGER.info("Media type '{}' is not supported.", payload.getMetadata().getType());
 		} else if (Event.PLAY.equals(event) ||Event.RESUME.equals(event)) {
-        	LOGGER.info("Turning light off.");
+			LOGGER.info("Turning light off.");
 			yeelightService.turnOff();
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
 			LOGGER.info("Turning light on.");
