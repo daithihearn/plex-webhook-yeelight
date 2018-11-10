@@ -17,6 +17,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/")
@@ -47,73 +48,73 @@ public class LightController {
 
 	@RequestMapping(value = "/toggle/livingroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String toggleLivingroomEndpoint(HttpServletRequest request) throws Exception {
+	public void toggleLivingroomEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.toggle(yeelightLivingroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/turnoff/livingroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String turnOffLivingroomEndpoint(HttpServletRequest request) throws Exception {
+	public void turnOffLivingroomEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.turnOff(yeelightLivingroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/turnon/livingroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String turnOnLivingroomEndpoint(HttpServletRequest request) throws Exception {
+	public void turnOnLivingroomEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.turnOn(yeelightLivingroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/toggle/bedroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String toggleBedroomEndpoint(HttpServletRequest request) throws Exception {
+	public void toggleBedroomEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.toggle(yeelightBedroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/turnoff/bedroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String turnOffBedroomEndpoint(HttpServletRequest request) throws Exception {
+	public void turnOffBedroomEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.turnOff(yeelightBedroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/turnon/bedroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String turnOnBedroomEndpoint(HttpServletRequest request) throws Exception {
+	public void turnOnBedroomEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.turnOn(yeelightBedroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/toggle/all", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String toggleAllEndpoint(HttpServletRequest request) throws Exception {
+	public void toggleAllEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.toggle(yeelightBedroomUrl);
 		yeelightService.toggle(yeelightLivingroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/turnoff/all", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String turnOffAllEndpoint(HttpServletRequest request) throws Exception {
+	public void turnOffAllEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.turnOff(yeelightBedroomUrl);
 		yeelightService.turnOff(yeelightLivingroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/turnon/all", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String turnOnAllEndpoint(HttpServletRequest request) throws Exception {
+	public void turnOnAllEndpoint(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		yeelightService.turnOn(yeelightBedroomUrl);
 		yeelightService.turnOn(yeelightLivingroomUrl);
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
 	}
 
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("files") MultipartFile[] files ) throws Exception {
+    public void plexPostEndpoint(MultipartHttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files ) throws Exception {
 
 		LOGGER.info("Files: {}", files.length);
 
@@ -142,7 +143,7 @@ public class LightController {
 			LOGGER.info("None of the above.");
 		}
 
-		return "<script>window.location.href = \"/success\";</script>";
+		response.sendRedirect("/success");
     }
 
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
