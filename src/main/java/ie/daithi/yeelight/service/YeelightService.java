@@ -19,8 +19,16 @@ public class YeelightService implements LightService {
 	}
 
 	@Override
-    public void turnOn(String yeelightUrl) throws Exception {
+	public void turnOn(String yeelightUrl) throws Exception {
+		// Instantiate your device (with its IP)
+		YeelightDevice device = new YeelightDevice(yeelightUrl);
+		// Switch on the device
+		device.setPower(true);
 
+	}
+
+	@Override
+    public void turnOnFade(String yeelightUrl) throws Exception {
         // Instantiate your device (with its IP)
         YeelightDevice device = new YeelightDevice(yeelightUrl);
         // Change device color
@@ -38,7 +46,15 @@ public class YeelightService implements LightService {
 
 	@Override
 	public void turnOff(String yeelightUrl) throws Exception {
+		// Instantiate your device (with its IP)
+		YeelightDevice device = new YeelightDevice(yeelightUrl);
+		// Switch off the device
+		device.setPower(false);
 
+	}
+
+	@Override
+	public void turnOffFade(String yeelightUrl) throws Exception {
 		// Instantiate your device (with its IP)
 		YeelightDevice device = new YeelightDevice(yeelightUrl);
 		// Set effect

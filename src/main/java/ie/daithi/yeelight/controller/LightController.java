@@ -134,10 +134,10 @@ public class LightController {
 			LOGGER.info("Media type '{}' is not supported.", payload.getMetadata().getType());
 		} else if (Event.PLAY.equals(event) ||Event.RESUME.equals(event)) {
 			LOGGER.info("Turning light off.");
-			yeelightService.turnOff(yeelightLivingroomUrl);
+			yeelightService.turnOffFade(yeelightLivingroomUrl);
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
 			LOGGER.info("Turning light on.");
-			yeelightService.turnOn(yeelightLivingroomUrl);
+			yeelightService.turnOnFade(yeelightLivingroomUrl);
 		} else {
 			LOGGER.info("None of the above.");
 		}
