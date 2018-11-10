@@ -14,7 +14,14 @@ public class YeelightService implements LightService {
 	@Value("${yeelight.delay.in.millis}")
 	private int delayInMillis;
 
-    @Override
+	@Override
+	public void toggle() throws Exception {
+		// Instantiate your device (with its IP)
+		YeelightDevice device = new YeelightDevice(yeelightUrl);
+		device.toggle();
+	}
+
+	@Override
     public void turnOn() throws Exception {
 
         // Instantiate your device (with its IP)

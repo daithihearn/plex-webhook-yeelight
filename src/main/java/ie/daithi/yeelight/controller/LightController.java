@@ -37,6 +37,13 @@ public class LightController {
 	@Autowired
 	private ObjectMapper jacksonObjectMapper;
 
+	@RequestMapping(value = "/toggle", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String toggleEndpoint(MultipartHttpServletRequest request) throws Exception {
+		yeelightService.toggle();
+		return "Success";
+	}
+
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public String plexPostEndpoint(MultipartHttpServletRequest request, @RequestParam("files") MultipartFile[] files ) throws Exception {
