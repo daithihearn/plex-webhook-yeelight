@@ -8,21 +8,18 @@ import com.mollin.yapi.YeelightDevice;
 @Service
 public class YeelightService implements LightService {
 
-	@Value("${yeelight.url}")
-	private String yeelightUrl;
-
 	@Value("${yeelight.delay.in.millis}")
 	private int delayInMillis;
 
 	@Override
-	public void toggle() throws Exception {
+	public void toggle(String yeelightUrl) throws Exception {
 		// Instantiate your device (with its IP)
 		YeelightDevice device = new YeelightDevice(yeelightUrl);
 		device.toggle();
 	}
 
 	@Override
-    public void turnOn() throws Exception {
+    public void turnOn(String yeelightUrl) throws Exception {
 
         // Instantiate your device (with its IP)
         YeelightDevice device = new YeelightDevice(yeelightUrl);
@@ -40,7 +37,7 @@ public class YeelightService implements LightService {
     }
 
 	@Override
-	public void turnOff() throws Exception {
+	public void turnOff(String yeelightUrl) throws Exception {
 
 		// Instantiate your device (with its IP)
 		YeelightDevice device = new YeelightDevice(yeelightUrl);

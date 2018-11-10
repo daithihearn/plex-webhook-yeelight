@@ -27,6 +27,12 @@ public class LightController {
     @Autowired
     private LightService yeelightService;
 
+	@Value("${yeelight.livingroom.url}")
+	private String yeelightLivingroomUrl;
+
+	@Value("${yeelight.bedroom.url}")
+	private String yeelightBedroomUrl;
+
 	@Value("#{'${plex.supported.users}'.split(',')}")
 	private List<Long> supportedUsers;
 
@@ -39,10 +45,69 @@ public class LightController {
 	@Autowired
 	private ObjectMapper jacksonObjectMapper;
 
-	@RequestMapping(value = "/toggle", method = RequestMethod.GET)
+	@RequestMapping(value = "/toggle/livingroom", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String toggleEndpoint(HttpServletRequest request) throws Exception {
-		yeelightService.toggle();
+	public String toggleLivingroomEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.toggle(yeelightLivingroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/turnoff/livingroom", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String turnOffLivingroomEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.turnOff(yeelightLivingroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/turnon/livingroom", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String turnOnLivingroomEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.turnOn(yeelightLivingroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/toggle/bedroom", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String toggleBedroomEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.toggle(yeelightBedroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/turnoff/bedroom", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String turnOffBedroomEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.turnOff(yeelightBedroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/turnon/bedroom", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String turnOnBedroomEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.turnOn(yeelightBedroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/toggle/all", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String toggleAllEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.toggle(yeelightBedroomUrl);
+		yeelightService.toggle(yeelightLivingroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/turnoff/all", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String turnOffAllEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.turnOff(yeelightBedroomUrl);
+		yeelightService.turnOff(yeelightLivingroomUrl);
+		return "Success";
+	}
+
+	@RequestMapping(value = "/turnon/all", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public String turnOnAllEndpoint(HttpServletRequest request) throws Exception {
+		yeelightService.turnOn(yeelightBedroomUrl);
+		yeelightService.turnOn(yeelightLivingroomUrl);
 		return "Success";
 	}
 
@@ -69,10 +134,10 @@ public class LightController {
 			LOGGER.info("Media type '{}' is not supported.", payload.getMetadata().getType());
 		} else if (Event.PLAY.equals(event) ||Event.RESUME.equals(event)) {
 			LOGGER.info("Turning light off.");
-			yeelightService.turnOff();
+			yeelightService.turnOff(yeelightLivingroomUrl);
 		} else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
 			LOGGER.info("Turning light on.");
-			yeelightService.turnOn();
+			yeelightService.turnOn(yeelightLivingroomUrl);
 		} else {
 			LOGGER.info("None of the above.");
 		}
