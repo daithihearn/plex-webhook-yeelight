@@ -16,6 +16,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/")
 public class LightController {
@@ -39,7 +41,7 @@ public class LightController {
 
 	@RequestMapping(value = "/toggle", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public String toggleEndpoint(MultipartHttpServletRequest request) throws Exception {
+	public String toggleEndpoint(HttpServletRequest request) throws Exception {
 		yeelightService.toggle();
 		return "Success";
 	}
