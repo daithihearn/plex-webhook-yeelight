@@ -114,7 +114,7 @@ public class LightController {
 
 	@RequestMapping(value = "/plexEndpoint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void plexPostEndpoint(MultipartHttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files ) throws Exception {
+    public String plexPostEndpoint(MultipartHttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files ) throws Exception {
 
 		LOGGER.info("Files: {}", files.length);
 
@@ -143,7 +143,7 @@ public class LightController {
 			LOGGER.info("None of the above.");
 		}
 
-		response.sendRedirect("/success");
+		return "success!";
     }
 
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
