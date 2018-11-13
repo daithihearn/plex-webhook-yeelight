@@ -55,6 +55,7 @@ dependencies {
 	// External Ependencies
 	compile("org.springframework:spring-core:$springCoreVersion")
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
 
 	compile("com.mollin.yapi:yapi:1.0")
 	compile("com.google.code.gson:gson:2.8.5")
