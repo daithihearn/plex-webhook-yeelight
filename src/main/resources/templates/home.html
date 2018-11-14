@@ -5,6 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="${errors}" />
+    <div th:each="data: ${responses}">
+        <p th:text="${data}" />
+    </div>
+    <div th:each="data: ${errors}">
+        <p th:text="${data}" />
+    </div>
 </body>
 </html>
