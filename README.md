@@ -18,10 +18,16 @@ This is a Kotlin and Spring Boot webservice for Plex webhooks to control a yeeli
  - `LAN Control` must be enabled on your Yeelight
  
 ## Running
-Docker (recommended):
-`docker-compose up --build`
+### Docker (recommended):
+1. Build and install the artifact into the local maven repo
 
-Spring boot:
+    `./build.sh`
+
+2. Start build and start the docker image
+
+    `docker-compose up --build`
+
+### Spring boot:
 `./gradlew bootRun`
 
 ## References
