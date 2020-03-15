@@ -26,16 +26,20 @@ class YeelightService(
     override fun turnOnFade(url: String) {
         // Instantiate your device (with its IP)
         val device = YeelightDevice(url)
-        // Change device color
-        device.setRGB(255, 180, 100)
-        // Change device brightness
-        device.setBrightness(100)
-        // Set effect
-        device.setEffect(YeelightEffect.SMOOTH)
         // Set duration of effect
         device.setDuration(delayInMillis)
+        // Set effect
+        device.setEffect(YeelightEffect.SMOOTH)
         // Switch on the device
         device.setPower(true)
+        // Change device color
+        device.setRGB(255, 244, 229)
+        // Change device brightness
+        device.setBrightness(100)
+        // Set HSV
+        device.setHSV(250, 100)
+        // Set color temperature
+        device.setColorTemperature(3500)
     }
 
     override fun turnOff(url: String) {
