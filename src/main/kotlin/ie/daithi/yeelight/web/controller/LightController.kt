@@ -97,7 +97,9 @@ class LightController (
         val payload: PlexPayload = objectMapper.readValue(payloadString, PlexPayload::class.java)
 
         val event = Event.fromValue(payload.event)
-        if (payload.account != null && !supportedUsers.contains(payload.account.id)) {
+        if (event == null) {
+            if (logger.isDebugEnabled()) logger.debug("Unsupported event: ${payload.event}")
+        } else if (payload.account != null && !supportedUsers.contains(payload.account.id)) {
             if (logger.isDebugEnabled()) logger.debug("User ${payload.account.id} is not supported.")
         } else if (payload.player != null && !supportedPlayers.contains(payload.player.uuid)) {
             if (logger.isDebugEnabled()) logger.debug("Player '${payload.player.uuid}' is not supported.")
