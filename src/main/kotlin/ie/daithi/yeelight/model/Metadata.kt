@@ -1,0 +1,56 @@
+package ie.daithi.yeelight.model
+
+/**
+ * {
+ * "librarySectionType": "artist",
+ * "ratingKey": "1936545",
+ * "key": "/library/metadata/1936545",
+ * "parentRatingKey": "1936544",
+ * "grandparentRatingKey": "1936543",
+ * "guid": "com.plexapp.agents.plexmusic://gracenote/track/7572499-91016293BE6BF7F1AB2F848F736E74E5/7572500-3CBAE310D4F3E66C285E104A1458B272?lang=en",
+ * "librarySectionID": 1224,
+ * "type": "track",
+ * "title": "Love The One You're With",
+ * "grandparentKey": "/library/metadata/1936543",
+ * "parentKey": "/library/metadata/1936544",
+ * "grandparentTitle": "Stephen Stills",
+ * "parentTitle": "Stephen Stills",
+ * "summary": "",
+ * "index": 1,
+ * "parentIndex": 1,
+ * "ratingCount": 6794,
+ * "thumb": "/library/metadata/1936544/thumb/1432897518",
+ * "art": "/library/metadata/1936543/art/1485951497",
+ * "parentThumb": "/library/metadata/1936544/thumb/1432897518",
+ * "grandparentThumb": "/library/metadata/1936543/thumb/1485951497",
+ * "grandparentArt": "/library/metadata/1936543/art/1485951497",
+ * "addedAt": 1000396126,
+ * "updatedAt": 1432897518
+ * }
+ */
+data class Metadata(
+    val librarySectionType: String? = null,
+    val ratingKey: String? = null,
+    val key: String? = null,
+    val parentRatingKey: String? = null,
+    val grandparentRatingKey: String? = null,
+    val guid: String? = null,
+    val librarySectionID: Long? = null,
+    val type: String? = null,
+    val title: String? = null,
+    val grandparentKey: String? = null,
+    val parentKey: String? = null,
+    val grandparentTitle: String? = null,
+    val parentTitle: String? = null,
+    val summary: String? = null,
+    val index: Long? = null,
+    val parentIndex: Long? = null,
+    val ratingCount: Long? = null,
+    val thumb: String? = null,
+    val art: String? = null,
+    val parentThumb: String? = null,
+    val grandparentThumb: String? = null,
+    val grandparentArt: String? = null,
+    val addedAt: Long? = null,
+    val updatedAt: Long? = null
+)
