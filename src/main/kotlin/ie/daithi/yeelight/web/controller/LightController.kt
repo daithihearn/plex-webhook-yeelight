@@ -23,12 +23,12 @@ import javax.servlet.http.HttpServletResponse
 @RestController
 @Api(tags = ["Yeelight"], description = "These endpoints perform operations on a Yeelight")
 class LightController (
-    private val yeelightService: LightService,
-    @Value("\${yeelight.url}") private val yeelightUrl: String,
-    @Value("#{'\${plex.supported.users}'.split(',')}") private var supportedUsers: List<Long>,
-    @Value("#{'\${plex.supported.players}'.split(',')}") private val supportedPlayers: List<String>,
-    @Value("#{'\${plex.supported.media}'.split(',')}") private val supportedMedia: MutableList<String?>,
-    private val objectMapper: ObjectMapper
+        private val yeelightService: LightService,
+        @Value("\${yeelight.host}") private val yeelightHost: String,
+        @Value("#{'\${plex.supported.users}'.split(',')}") private var supportedUsers: List<Long>,
+        @Value("#{'\${plex.supported.players}'.split(',')}") private val supportedPlayers: List<String>,
+        @Value("#{'\${plex.supported.media}'.split(',')}") private val supportedMedia: MutableList<String?>,
+        private val objectMapper: ObjectMapper
 ) {
 
     @PostMapping("/toggle")
@@ -41,7 +41,7 @@ class LightController (
     )
     fun toggleLivingroomEndpoint() {
         try {
-            yeelightService.toggle(yeelightUrl)
+            yeelightService.toggle(yeelightHost)
         } catch (ex : YeelightSocketException) {
             throw BadGatewayException(ex.message!!)
         }
@@ -57,7 +57,7 @@ class LightController (
     )
     fun turnOffLivingroomEndpoint() {
         try {
-            yeelightService.turnOff(yeelightUrl)
+            yeelightService.turnOff(yeelightHost)
         } catch (ex : YeelightSocketException) {
             throw BadGatewayException(ex.message!!)
         }
@@ -73,7 +73,7 @@ class LightController (
     )
     fun turnOnLivingroomEndpoint(request: HttpServletRequest?, response: HttpServletResponse?) {
         try {
-            yeelightService.turnOn(yeelightUrl)
+            yeelightService.turnOn(yeelightHost)
         } catch (ex : YeelightSocketException) {
             throw BadGatewayException(ex.message!!)
         }
@@ -96,23 +96,26 @@ class LightController (
         val payloadString: String = request.getParameter("payload")
         val payload: PlexPayload = objectMapper.readValue(payloadString, PlexPayload::class.java)
 
+        if(logger.isDebugEnabled)
+            logger.debug("Webhook request: $payloadString")
+
         val event = Event.fromValue(payload.event)
         if (event == null) {
-            if (logger.isDebugEnabled()) logger.debug("Unsupported event: ${payload.event}")
+            if (logger.isDebugEnabled) logger.debug("Unsupported event: ${payload.event}")
         } else if (payload.account != null && !supportedUsers.contains(payload.account.id)) {
-            if (logger.isDebugEnabled()) logger.debug("User ${payload.account.id} is not supported.")
+            if (logger.isDebugEnabled) logger.debug("User ${payload.account.id} is not supported.")
         } else if (payload.player != null && !supportedPlayers.contains(payload.player.uuid)) {
-            if (logger.isDebugEnabled()) logger.debug("Player '${payload.player.uuid}' is not supported.")
+            if (logger.isDebugEnabled) logger.debug("Player '${payload.player.uuid}' is not supported.")
         } else if (payload.metadata != null && !supportedMedia.contains(payload.metadata.type)) {
-            if (logger.isDebugEnabled()) logger.debug("Media type '${payload.metadata.type}' is not supported.")
-        } else if (Event.PLAY.equals(event) || Event.RESUME.equals(event)) {
+            if (logger.isDebugEnabled) logger.debug("Media type '${payload.metadata.type}' is not supported.")
+        } else if (Event.PLAY == event || Event.RESUME == event) {
             logger.info("Turning light off.")
-            yeelightService.turnOffFade(yeelightUrl)
-        } else if (Event.STOP.equals(event) || Event.PAUSE.equals(event)) {
+            yeelightService.turnOffFade(yeelightHost)
+        } else if (Event.STOP == event || Event.PAUSE == event) {
             logger.info("Turning light on.")
-            yeelightService.turnOnFade(yeelightUrl)
+            yeelightService.turnOnFade(yeelightHost)
         } else {
-            if (logger.isDebugEnabled()) logger.debug("None of the above.")
+            if (logger.isDebugEnabled) logger.debug("None of the above.")
         }
     }
 
